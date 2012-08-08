@@ -7,7 +7,7 @@ class Meanbee_Rackspacecloud_Model_Observer {
 
         if (!$config->isConfigured() && $config->isEnabled()) {
             Mage::getSingleton('core/session')->addNotice(
-                Mage::helper('rackspace')->__("The Meanbee S3 Downloads module is enabled, but without the Amazon Access and Secret keys, the module will not work!")
+                Mage::helper('rackspace')->__("The Meanbee Rackspace Cloud Files Downloads module is enabled, but without the Amazon Access and Secret keys, the module will not work!")
             );
         }
 

@@ -2,8 +2,17 @@
 require_once "php-cloudfiles/cloudfiles.php";
 class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
 
+    /**
+     * Generate the temporary URL for a file.
+     *
+     * @TODO Add error checking around the get_container, and throw an exception if something is amiss
+     * @TODO Add error checking around get_object
+     * @TODO If get_temp_url fails for some reason, try and force a reauth (our auth key might have expired?)
+     *
+     * @param $url
+     * @return mixed
+     */
     public function getTempUrl($url) {
-        // TODO Error checking, container doesn't exist?
         $containerInfo = $this->_getContainerInfo($url);
         $container = $this->getConnection()->get_container($containerInfo['name']);
 
@@ -51,10 +60,15 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         return Mage::helper('rackspace/cache');
     }
 
-    public function getAuthInstance() {
+    /**
+     * @param bool $force_new If set to true, will force a new value to be generated and save that as the new cached
+     *                        value.
+     * @return CF_Authentication
+     */
+    public function getAuthInstance($force_new = false) {
         $auth_config = $this->getCache()->getAuthConfig();
 
-        if ($auth_config === false) {
+        if ($auth_config === false || $force_new) {
             $username = $this->getConfig()->getRackspaceUsername();
             $api_key = $this->getConfig()->getRackspaceApiKey();
 
@@ -100,13 +114,15 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
 
     /**
      * Generate a map of CDN urls to containers.  Uses cache if available.
-     *
+
+     * @param bool $force_new If set to true, will force a new value to be generated and save that as the new cached
+     *                        value.
      * @return array
      */
-    public function getCdnContainerMap() {
+    public function getCdnContainerMap($force_new = false) {
         $cdn_map = $this->getCache()->getCdnContainerMap();
 
-        if ($cdn_map === false) {
+        if ($cdn_map === false || $force_new) {
             $cdn_map = array();
 
             foreach ($this->getConnection()->get_containers() as $container) {
@@ -126,12 +142,16 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * Get the shared secret that's used when generating the temporary url for a file.  If we don't know of one, then
      * set a new one in the account and cache.
      *
+     * @TODO Check the headers to see if the secret key was set successfully, otherwise throw an exception.
+     *
+     * @param bool $force_new If set to true, will force a new value to be generated and save that as the new cached
+     *                        value.
      * @return string
      */
-    public function getSharedSecret() {
+    public function getSharedSecret($force_new = false) {
         $secret_key = $this->getCache()->getSharedSecret();
 
-        if ($secret_key === false) {
+        if ($secret_key === false || $force_new) {
             $secret_key = $this->getHelper()->getRandomSecretKey();
 
             $curlCh = curl_init();

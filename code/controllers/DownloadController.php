@@ -2,6 +2,12 @@
 require_once "Mage/Downloadable/controllers/DownloadController.php";
 class Meanbee_Rackspacecloud_DownloadController extends Mage_Downloadable_DownloadController {
 
+    /**
+     * @TODO Check that the module is enabled and properly configured before attempting to generate a temporary URL
+     *
+     * @param $url
+     * @param $resourceType
+     */
     protected function _processDownload($url, $resourceType) {
         if ($resourceType == Mage_Downloadable_Helper_Download::LINK_TYPE_URL) {
 

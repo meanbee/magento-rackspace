@@ -4,8 +4,7 @@ class Meanbee_Rackspacecloud_Helper_Data extends Mage_Core_Helper_Abstract {
         /** @var $config Meanbee_Rackspacecloud_Helper_Config */
         $config = Mage::helper('rackspace/config');
 
-        $module_log_active = $config->isLogEnabled();
-        Mage::log("[meanbee_rackspacecloud] $message", $level, $config->getLogLocation(), $module_log_active);
+        Mage::log("[meanbee_rackspacecloud] $message", $level, $config->getLogLocation(), $config->isLogEnabled());
     }
 
     public function getRandomSecretKey() {
