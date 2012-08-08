@@ -21,35 +21,44 @@
                 <class>Meanbee_Rackspacecloud_Helper</class>
             </rackspace>
         </helpers>
-        <!--<events>-->
-            <!--<admin_system_config_changed_section_rackspace>-->
-                <!--<observers>-->
-                    <!--<rackspace_config_change>-->
-                        <!--<type>singleton</type>-->
-                        <!--<class>Rackspacecloud/observer</class>-->
-                        <!--<method>observeConfigChange</method>-->
-                    <!--</rackspace_config_change>-->
-                <!--</observers>-->
-            <!--</admin_system_config_changed_section_rackspace>-->
-        <!--</events>-->
-        <!--<rewrite>-->
-            <!--<mbdd_download>-->
-                <!--<from><![CDATA[#^/downloadable/download/#]]></from>-->
-                <!--<to>/rackspace/download/</to>-->
-            <!--</mbdd_download>-->
-        <!--</rewrite>-->
+        <events>
+            <admin_system_config_changed_section_rackspace>
+                <observers>
+                    <rackspace_config_change>
+                        <type>singleton</type>
+                        <class>rackspace/observer</class>
+                        <method>observeConfigChange</method>
+                    </rackspace_config_change>
+                </observers>
+            </admin_system_config_changed_section_rackspace>
+            <meanbee_downloadable_product_controller_process_download>
+                <observers>
+                    <rackspace_config_change>
+                        <type>singleton</type>
+                        <class>rackspace/observer</class>
+                        <method>observeProcessDownload</method>
+                    </rackspace_config_change>
+                </observers>
+            </meanbee_downloadable_product_controller_process_download>
+        </events>
+        <rewrite>
+            <mbdd_download>
+                <from><![CDATA[#^/downloadable/download/#]]></from>
+                <to>/rackspace/download/</to>
+            </mbdd_download>
+        </rewrite>
     </global>
-    <!--<frontend>-->
-        <!--<routers>-->
-            <!--<rackspace_download>-->
-                <!--<use>standard</use>-->
-                <!--<args>-->
-                    <!--<module>Meanbee_Rackspacecloud</module>-->
-                    <!--<frontName>rackspace</frontName>-->
-                <!--</args>-->
-            <!--</rackspace_download>-->
-        <!--</routers>-->
-    <!--</frontend>-->
+    <frontend>
+        <routers>
+            <rackspace_download>
+                <use>standard</use>
+                <args>
+                    <module>Meanbee_Rackspacecloud</module>
+                    <frontName>rackspace</frontName>
+                </args>
+            </rackspace_download>
+        </routers>
+    </frontend>
     <adminhtml>
         <acl>
             <resources>
