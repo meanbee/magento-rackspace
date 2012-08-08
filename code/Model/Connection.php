@@ -97,4 +97,30 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     public function getConfig() {
         return Mage::helper('rackspace/config');
     }
+
+    /**
+     * @return Meanbee_Rackspacecloud_Helper_Cache
+     */
+    public function getCache() {
+        return Mage::helper('rackspace/cache');
+    }
+
+    public function getAuthenticationInstance() {
+        $auth_config = $this->getCache()->getAuthConfig();
+
+        if ($auth_config === false) {
+            $username = $this->getConfig()->getRackspaceUsername();
+            $api_key = $this->getConfig()->getRackspaceApiKey();
+
+            $auth = new CF_Authentication($username, $api_key);
+            $auth->authenticate();
+
+            $this->getCache()->setAuthConfig($auth->export_credentials());
+        } else {
+            $auth = new CF_Authentication();
+            $auth->load_cached_credentials($auth_config['auth_token'], $auth_config['storage_url'], $auth_config['cdnm_url']);
+        }
+
+        return $auth;
+    }
 }
