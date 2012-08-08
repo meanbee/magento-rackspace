@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <rackspace translate="label" module="rackspace">
+            <label>Meanbee: Rackspace Downloads</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>9000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="rackspace">
+                    <label>General Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label" module="rackspace">
+                            <label>Enable?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If you disable this module then any <i>access restricted</i> S3 assets you may have entered for your downloadable products will not be accessible (but still totally secure), and any <i>publicly accessible</i> S3 assets will use this hosting account's bandwidth for customer downloads.]]></comment>
+                        </enabled>
+                    </fields>
+                </general>
+                <rackspace_options translate="label" module="rackspace">
+                    <label>Rackspace Cloud Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <username translate="label" module="rackspace">
+                            <label>Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Your <i>Username</i> uniquely identifies your account at Amazon.]]></comment>
+                        </username>
+                        <api_key translate="label" module="rackspace">
+                            <label>API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[The API access key associated with your account.]]></comment>
+                        </api_key>
+                        <request_timeout translate="label" module="rackspace">
+                            <label>Request Timeout</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>A unique, time-sensitive, URL is generated every time a customer attempts to download a file.  This value indicates the number of seconds for which you'd like the generated URL to be valid.</comment>
+                        </request_timeout>
+                    </fields>
+                </rackspace_options>
+                <developer translate="label" module="rackspace">
+                    <label>Developer Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <log_enabled translate="label" module="rackspace">
+                            <label>Enable Logging?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[<i>If enabled</i>, log messages will be forced, regardless of whether logging is enabled globally.  Logs are written to a dedicated file in the <tt>var/log</tt> directory.]]></comment>
+                        </log_enabled>
+                    </fields>
+                </developer>
+            </groups>
+        </rackspace>
+    </sections>
+</config>
