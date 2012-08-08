@@ -2,7 +2,7 @@
 <config>
     <sections>
         <rackspace translate="label" module="rackspace">
-            <label>Meanbee: Rackspace Downloads</label>
+            <label>Meanbee: Rackspace Cloud Files Downloads</label>
             <tab>sales</tab>
             <frontend_type>text</frontend_type>
             <sort_order>9000</sort_order>
@@ -26,12 +26,12 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[If you disable this module then any <i>access restricted</i> S3 assets you may have entered for your downloadable products will not be accessible (but still totally secure), and any <i>publicly accessible</i> S3 assets will use this hosting account's bandwidth for customer downloads.]]></comment>
+                            <comment><![CDATA[If you disable this module then any <i>access restricted</i> Rackspace Cloud Files assets you may have entered for your downloadable products will not be accessible (and still totally secure), and any <i>publicly accessible</i> Rackspace Cloud Files assets will use this hosting account's bandwidth for customer downloads.]]></comment>
                         </enabled>
                     </fields>
                 </general>
                 <rackspace_options translate="label" module="rackspace">
-                    <label>Rackspace Cloud Options</label>
+                    <label>Rackspace Cloud Files Options</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>20</sort_order>
                     <show_in_default>1</show_in_default>
@@ -45,7 +45,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Your <i>Username</i> uniquely identifies your account at Amazon.]]></comment>
+                            <comment><![CDATA[Your <i>username</i> uniquely identifies your account at Rackspace Cloud Files, and is the same username that you use to log in to <a href="https://manage.rackspacecloud.com">manage.rackspacecloud.com</a>.]]></comment>
                         </username>
                         <api_key translate="label" module="rackspace">
                             <label>API Key</label>
@@ -54,7 +54,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[The API access key associated with your account.]]></comment>
+                            <comment><![CDATA[The API key associated with your account.  You can find this in your <a href="https://manage.rackspacecloud.com/APIAccess.do">Rackspace Cloud management interface</a>.]]></comment>
                         </api_key>
                         <request_timeout translate="label" module="rackspace">
                             <label>Request Timeout</label>
