@@ -43,7 +43,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         $object = $container->get_object($objectName);
 
         return $object->get_temp_url(
-            $this->_data['shared_secret'],
+            $this->getSharedSecret(),
             $this->getConfig()->getRackspaceRequestTimeout(),
             'GET'
         );
@@ -102,6 +102,13 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         return $auth;
     }
 
+    /**
+     * @return Meanbee_Rackspacecloud_Helper_Data
+     */
+    public function getHelper() {
+        return Mage::helper('rackspace');
+    }
+
     public function getConnection() {
         return new CF_Connection($this->getAuthInstance());
     }
@@ -131,5 +138,35 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         }
 
         return $cdn_map;
+    }
+
+    public function getSharedSecret() {
+        $secret_key = $this->getCache()->getSharedSecret();
+
+        if ($secret_key === false) {
+            $secret_key = $this->getHelper()->getRandomSecretKey();
+
+            $curlCh = curl_init();
+
+            curl_setopt($curlCh, CURLOPT_SSL_VERIFYPEER, True);
+            curl_setopt($curlCh, CURLOPT_CAINFO, Mage::getBaseDir('lib') . "/php-cloudfiles/share/cacert.pem");
+            curl_setopt($curlCh, CURLOPT_POST, TRUE);
+            curl_setopt($curlCh, CURLOPT_POSTFIELDS, "");
+            curl_setopt($curlCh, CURLOPT_VERBOSE, 1);
+            curl_setopt($curlCh, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($curlCh, CURLOPT_MAXREDIRS, 4);
+            curl_setopt($curlCh, CURLOPT_HEADER, 0);
+            curl_setopt($curlCh, CURLOPT_HTTPHEADER, array("X-Auth-Token: " . $this->getAuthToken(), "X-Account-Meta-Temp-Url-Key: $secret_key"));
+            curl_setopt($curlCh, CURLOPT_USERAGENT, USER_AGENT);
+            curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curlCh, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($curlCh, CURLOPT_URL, $this->getStorageUrl());
+            curl_exec($curlCh);
+            curl_close($curlCh);
+
+            $this->getCache()->setSharedSecret($secret_key);
+        }
+
+        return $secret_key;
     }
 }
