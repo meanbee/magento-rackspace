@@ -2,7 +2,7 @@
 include "php-cloudfiles/cloudfiles.php";
 
 class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
-    
+
     public function getTempUrl($url) {
         // TODO Error checking, container doesn't exist?
         $containerInfo = $this->_getContainerInfo($url);
@@ -78,18 +78,32 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         return Mage::helper('rackspace');
     }
 
+    /**
+     * @return CF_Connection
+     */
     public function getConnection() {
         return new CF_Connection($this->getAuthInstance());
     }
 
+    /**
+     * @return string
+     */
     public function getAuthToken() {
         return $this->getAuthInstance()->auth_token;
     }
 
+    /**
+     * @return string
+     */
     public function getStorageUrl() {
         return $this->getAuthInstance()->storage_url;
     }
 
+    /**
+     * Generate a map of CDN urls to containers.  Uses cache if available.
+     *
+     * @return array
+     */
     public function getCdnContainerMap() {
         $cdn_map = $this->getCache()->getCdnContainerMap();
 
@@ -109,6 +123,12 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         return $cdn_map;
     }
 
+    /**
+     * Get the shared secret that's used when generating the temporary url for a file.  If we don't know of one, then
+     * set a new one in the account and cache.
+     *
+     * @return string
+     */
     public function getSharedSecret() {
         $secret_key = $this->getCache()->getSharedSecret();
 
