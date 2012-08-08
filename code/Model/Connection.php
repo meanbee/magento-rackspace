@@ -2,22 +2,11 @@
 include "php-cloudfiles/cloudfiles.php";
 
 class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
-    protected $_conn;
-
     /* This function will get the correct values for the instance variables in this class.
     TODO Cache the results */
     protected function _construct() {
         parent::_construct();
 
-        $username = $this->getConfig()->getRackspaceUsername();
-        $api_key = $this->getConfig()->getRackspaceApiKey();
-
-        $auth = new CF_Authentication($username, $api_key);
-        $auth->authenticate();
-
-        $this->_data['auth_token'] = $auth->auth_token;
-        $this->_data['storage_url'] = $auth->storage_url;
-        $this->_conn = new CF_Connection($auth);
 
         $this->generateMap();
 
@@ -36,11 +25,11 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         curl_setopt($curlCh, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($curlCh, CURLOPT_MAXREDIRS, 4);
         curl_setopt($curlCh, CURLOPT_HEADER, 0);
-        curl_setopt($curlCh, CURLOPT_HTTPHEADER, array("X-Auth-Token: " . $this->_data['auth_token'], "X-Account-Meta-Temp-Url-Key: $sharedSecret"));
+        curl_setopt($curlCh, CURLOPT_HTTPHEADER, array("X-Auth-Token: " . $this->getAuthToken(), "X-Account-Meta-Temp-Url-Key: $sharedSecret"));
         curl_setopt($curlCh, CURLOPT_USERAGENT, USER_AGENT);
         curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($curlCh, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($curlCh, CURLOPT_URL, $this->_data['storage_url']);
+        curl_setopt($curlCh, CURLOPT_URL, $this->getStorageUrl());
         curl_exec($curlCh);
         curl_close($curlCh);
 
@@ -50,7 +39,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     protected function generateMap()
     {
         $this->_data['map'] = array();
-        foreach ($this->_conn->get_containers() as $container) {
+        foreach ($this->getConnection()->get_containers() as $container) {
             $container->make_public();
             $this->_data['map'][$container->cdn_uri] = $container->name;
             $this->_data['map'][$container->cdn_ssl_uri] = $container->name;
@@ -60,7 +49,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     public function getTempUrl($url) {
         // TODO Error checking, container doesn't exist?
         $containerInfo = $this->_getContainerInfo($url);
-        $container = $this->_conn->get_container($containerInfo['name']);
+        $container = $this->getConnection()->get_container($containerInfo['name']);
         $objectName = $this->_getObjectName($url, $containerInfo['url']);
         $object = $container->get_object($objectName);
 
@@ -105,7 +94,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         return Mage::helper('rackspace/cache');
     }
 
-    public function getAuthenticationInstance() {
+    public function getAuthInstance() {
         $auth_config = $this->getCache()->getAuthConfig();
 
         if ($auth_config === false) {
@@ -122,5 +111,17 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         }
 
         return $auth;
+    }
+
+    public function getConnection() {
+        return new CF_Connection($this->getAuthInstance());
+    }
+
+    public function getAuthToken() {
+        return $this->getAuthInstance()->auth_token;
+    }
+
+    public function getStorageUrl() {
+        return $this->getAuthInstance()->storage_url;
     }
 }
