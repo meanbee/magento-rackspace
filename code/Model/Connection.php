@@ -3,17 +3,14 @@ include "php-cloudfiles/cloudfiles.php";
 
 class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     protected $_conn;
-    protected $_helper;
 
     /* This function will get the correct values for the instance variables in this class.
     TODO Cache the results */
     protected function _construct() {
         parent::_construct();
-        /** @var $this->_helper Meanbee_Rackspacecloud_Helper_Config */
-        $this->_helper = Mage::helper('rackspace/config');
 
-        $username = $this->_helper->getRackspaceUsername();
-        $api_key = $this->_helper->getRackspaceApiKey();
+        $username = $this->getConfig()->getRackspaceUsername();
+        $api_key = $this->getConfig()->getRackspaceApiKey();
 
         $auth = new CF_Authentication($username, $api_key);
         $auth->authenticate();
@@ -69,7 +66,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
 
         return $object->get_temp_url(
             $this->_data['shared_secret'],
-            $this->_helper->getRackspaceRequestTimeout(),
+            $this->getConfig()->getRackspaceRequestTimeout(),
             'GET'
         );
     }
@@ -92,5 +89,12 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
                 );
             }
         }
+    }
+
+    /**
+     * @return Meanbee_Rackspacecloud_Helper_Config
+     */
+    public function getConfig() {
+        return Mage::helper('rackspace/config');
     }
 }
