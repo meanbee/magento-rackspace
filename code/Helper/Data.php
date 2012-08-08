@@ -11,4 +11,10 @@ class Meanbee_Rackspacecloud_Helper_Data extends Mage_Core_Helper_Abstract {
     public function getRandomSecretKey() {
         return str_shuffle(md5(microtime()));
     }
+
+    public function isRelevantUrl($url) {
+        preg_match_all("/^https?:\/\/.*\.rackcdn\.com\/(.*)$/", $url, $matches);
+
+        return $matches && count($matches) > 0 && count($matches[0]) > 0;
+    }
 }
