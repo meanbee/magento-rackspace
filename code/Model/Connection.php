@@ -2,43 +2,12 @@
 include "php-cloudfiles/cloudfiles.php";
 
 class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
-    /* This function will get the correct values for the instance variables in this class.
-    TODO Cache the results */
-    protected function _construct() {
-        parent::_construct();
-
-        $this->generateMap();
-
-        $this->_data['shared_secret'] = $this->updateSharedSecret("Hello");
-    }
-
-    protected function updateSharedSecret($sharedSecret)
-    {
-        $curlCh = curl_init();
-
-        curl_setopt($curlCh, CURLOPT_SSL_VERIFYPEER, True);
-        curl_setopt($curlCh, CURLOPT_CAINFO, Mage::getBaseDir('lib') . "/php-cloudfiles/share/cacert.pem");
-        curl_setopt($curlCh, CURLOPT_POST, TRUE);
-        curl_setopt($curlCh, CURLOPT_POSTFIELDS, "");
-        curl_setopt($curlCh, CURLOPT_VERBOSE, 1);
-        curl_setopt($curlCh, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($curlCh, CURLOPT_MAXREDIRS, 4);
-        curl_setopt($curlCh, CURLOPT_HEADER, 0);
-        curl_setopt($curlCh, CURLOPT_HTTPHEADER, array("X-Auth-Token: " . $this->getAuthToken(), "X-Account-Meta-Temp-Url-Key: $sharedSecret"));
-        curl_setopt($curlCh, CURLOPT_USERAGENT, USER_AGENT);
-        curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curlCh, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($curlCh, CURLOPT_URL, $this->getStorageUrl());
-        curl_exec($curlCh);
-        curl_close($curlCh);
-
-        return $sharedSecret;
-    }
-
+    
     public function getTempUrl($url) {
         // TODO Error checking, container doesn't exist?
         $containerInfo = $this->_getContainerInfo($url);
         $container = $this->getConnection()->get_container($containerInfo['name']);
+
         $objectName = $this->_getObjectName($url, $containerInfo['url']);
         $object = $container->get_object($objectName);
 
