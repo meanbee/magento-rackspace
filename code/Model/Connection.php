@@ -7,7 +7,6 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     protected function _construct() {
         parent::_construct();
 
-
         $this->generateMap();
 
         $this->_data['shared_secret'] = $this->updateSharedSecret("Hello");
@@ -36,16 +35,6 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         return $sharedSecret;
     }
 
-    protected function generateMap()
-    {
-        $this->_data['map'] = array();
-        foreach ($this->getConnection()->get_containers() as $container) {
-            $container->make_public();
-            $this->_data['map'][$container->cdn_uri] = $container->name;
-            $this->_data['map'][$container->cdn_ssl_uri] = $container->name;
-        }
-    }
-
     public function getTempUrl($url) {
         // TODO Error checking, container doesn't exist?
         $containerInfo = $this->_getContainerInfo($url);
@@ -68,7 +57,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     }
 
     protected function _getContainerInfo($url) {
-        foreach ($this->getMap() as $key => $value) {
+        foreach ($this->getCdnContainerMap() as $key => $value) {
             $keyLength = strlen($key);
             $containerCdn = substr($url, 0, $keyLength);
             if ($containerCdn == $key) {
@@ -123,5 +112,24 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
 
     public function getStorageUrl() {
         return $this->getAuthInstance()->storage_url;
+    }
+
+    public function getCdnContainerMap() {
+        $cdn_map = $this->getCache()->getCdnContainerMap();
+
+        if ($cdn_map === false) {
+            $cdn_map = array();
+
+            foreach ($this->getConnection()->get_containers() as $container) {
+                $container->make_public();
+
+                $cdn_map[$container->cdn_uri] = $container->name;
+                $cdn_map[$container->cdn_ssl_uri] = $container->name;
+            }
+
+            $this->getCache()->setCdnContainerMap($cdn_map);
+        }
+
+        return $cdn_map;
     }
 }
