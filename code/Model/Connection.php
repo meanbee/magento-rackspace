@@ -5,10 +5,6 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     /**
      * Generate the temporary URL for a file.
      *
-     * @TODO Add error checking around the get_container, and throw an exception if something is amiss
-     * @TODO Add error checking around get_object
-     * @TODO If get_temp_url fails for some reason, try and force a reauth (our auth key might have expired?)
-     *
      * @param $url
      * @return mixed
      */
@@ -142,7 +138,8 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * Get the shared secret that's used when generating the temporary url for a file.  If we don't know of one, then
      * set a new one in the account and cache.
      *
-     * @TODO Check the headers to see if the secret key was set successfully, otherwise throw an exception.
+     * There are possible concurrency issues here. The request to update a remote shared secret takes several seconds.
+     * In this time, we could see several requests occur.
      *
      * @param bool $force_new If set to true, will force a new value to be generated and save that as the new cached
      *                        value.
@@ -154,27 +151,53 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
         if ($secret_key === false || $force_new) {
             $secret_key = $this->getHelper()->getRandomSecretKey();
 
-            $curlCh = curl_init();
-
-            curl_setopt($curlCh, CURLOPT_SSL_VERIFYPEER, True);
-            curl_setopt($curlCh, CURLOPT_CAINFO, Mage::getBaseDir('lib') . "/php-cloudfiles/share/cacert.pem");
-            curl_setopt($curlCh, CURLOPT_POST, TRUE);
-            curl_setopt($curlCh, CURLOPT_POSTFIELDS, "");
-            curl_setopt($curlCh, CURLOPT_VERBOSE, 1);
-            curl_setopt($curlCh, CURLOPT_FOLLOWLOCATION, 1);
-            curl_setopt($curlCh, CURLOPT_MAXREDIRS, 4);
-            curl_setopt($curlCh, CURLOPT_HEADER, 0);
-            curl_setopt($curlCh, CURLOPT_HTTPHEADER, array("X-Auth-Token: " . $this->getAuthToken(), "X-Account-Meta-Temp-Url-Key: $secret_key"));
-            curl_setopt($curlCh, CURLOPT_USERAGENT, USER_AGENT);
-            curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_setopt($curlCh, CURLOPT_CONNECTTIMEOUT, 10);
-            curl_setopt($curlCh, CURLOPT_URL, $this->getStorageUrl());
-            curl_exec($curlCh);
-            curl_close($curlCh);
+            /*
+             * Attempt to update the remote shared secret, if this fails then reauth
+             * and then try again. If this fails once more, we can't accurately diagnose the
+             * problem so the best course of action is to except.
+             */
+            if ($this->_updateRemoteSharedSecret($secret_key) == false) {
+                $this->getAuthInstance(true);
+                if ($this->_updateRemoteSharedSecret($secret_key) == false) {
+                    Mage::throwException("Problem with Rackspace API or module configuration.");
+                }
+            }
 
             $this->getCache()->setSharedSecret($secret_key);
         }
 
         return $secret_key;
+    }
+
+    /**
+     * The curl calls to set the remote secret. Return success or failure.
+     *
+     * @param string $secret_key The string to set the remote secret key to.
+     *
+     * @return bool success or failure
+     */
+    protected function _updateRemoteSharedSecret($secret_key) {
+        $curlCh = curl_init();
+
+        curl_setopt($curlCh, CURLOPT_SSL_VERIFYPEER, True);
+        curl_setopt($curlCh, CURLOPT_CAINFO, Mage::getBaseDir('lib') . "/php-cloudfiles/share/cacert.pem");
+        curl_setopt($curlCh, CURLOPT_POST, TRUE);
+        curl_setopt($curlCh, CURLOPT_POSTFIELDS, "");
+        curl_setopt($curlCh, CURLOPT_VERBOSE, 1);
+        curl_setopt($curlCh, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curlCh, CURLOPT_MAXREDIRS, 4);
+        curl_setopt($curlCh, CURLOPT_HEADER, 0);
+        curl_setopt($curlCh, CURLOPT_HTTPHEADER, array("X-Auth-Token: " . $this->getAuthToken(), "X-Account-Meta-Temp-Url-Key: $secret_key"));
+        curl_setopt($curlCh, CURLOPT_USERAGENT, USER_AGENT);
+        curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curlCh, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($curlCh, CURLOPT_URL, $this->getStorageUrl());
+
+        curl_exec($curlCh);
+        $httpStatus = curl_getinfo($curlCh, CURLINFO_HTTP_CODE);
+
+        curl_close($curlCh);
+
+        return substr($httpStatus, 0, 1) == "2";
     }
 }
