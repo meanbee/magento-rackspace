@@ -30,16 +30,20 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     }
 
     protected function _getContainerInfo($url) {
+        $this->getHelper()->log("Acquiring container info based on URL ($url)", Zend_Log::INFO);
         foreach ($this->getCdnContainerMap() as $key => $value) {
             $keyLength = strlen($key);
             $containerCdn = substr($url, 0, $keyLength);
             if ($containerCdn == $key) {
+                $this->getHelper()->log("Container info found: name ($value), url ($key)", Zend_Log::INFO);
+
                 return array (
                     "name" => $value,
                     "url" => $key
                 );
             }
         }
+        $this->getHelper()->log("Container could not be found.", Zend_Log::INFO);
     }
 
     /**
@@ -62,9 +66,11 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * @return CF_Authentication
      */
     public function getAuthInstance($force_new = false) {
+        $this->getHelper()->log("Authenticating with rackspace.", Zend_Log::INFO);
         $auth_config = $this->getCache()->getAuthConfig();
 
         if ($auth_config === false || $force_new) {
+            $this->getHelper()->log("Creating new authentication.", Zend_Log::INFO);
             $username = $this->getConfig()->getRackspaceUsername();
             $api_key = $this->getConfig()->getRackspaceApiKey();
 
@@ -72,9 +78,12 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
             $auth->authenticate();
 
             $this->getCache()->setAuthConfig($auth->export_credentials());
+            $this->getHelper()->log("Authenticated successfully and cached.", Zend_Log::INFO);
         } else {
+            $this->getHelper()->log("Cached authentication details found.", Zend_Log::INFO);
             $auth = new CF_Authentication();
             $auth->load_cached_credentials($auth_config['auth_token'], $auth_config['storage_url'], $auth_config['cdnm_url']);
+            $this->getHelper()->log("Cached authentication details loaded.", Zend_Log::INFO);
         }
 
         return $auth;
@@ -116,9 +125,11 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * @return array
      */
     public function getCdnContainerMap($force_new = false) {
+        $this->getHelper()->log("Generating CDN container map.", Zend_Log::INFO);
         $cdn_map = $this->getCache()->getCdnContainerMap();
 
         if ($cdn_map === false || $force_new) {
+            $this->getHelper()->log(".", Zend_Log::INFO);
             $cdn_map = array();
 
             foreach ($this->getConnection()->get_containers() as $container) {
@@ -129,7 +140,11 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
             }
 
             $this->getCache()->setCdnContainerMap($cdn_map);
+        } else {
+            $this->getHelper()->log("Map cached map data found.", Zend_Log::INFO);
         }
+
+        $this->getHelper()->log("CDN container map created.", Zend_Log::INFO);
 
         return $cdn_map;
     }
@@ -146,10 +161,12 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * @return string
      */
     public function getSharedSecret($force_new = false) {
+        $this->getHelper()->log("Getting shared secret.", Zend_Log::INFO);
         $secret_key = $this->getCache()->getSharedSecret();
 
         if ($secret_key === false || $force_new) {
             $secret_key = $this->getHelper()->getRandomSecretKey();
+            $this->getHelper()->log("No cached shared secret found, setting to $secret_key.", Zend_Log::INFO);
 
             /*
              * Attempt to update the remote shared secret, if this fails then reauth
@@ -157,14 +174,18 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
              * problem so the best course of action is to except.
              */
             if ($this->_updateRemoteSharedSecret($secret_key) == false) {
+                $this->getHelper()->log("Request failed, requiring authorisation credentials.", Zend_Log::INFO);
                 $this->getAuthInstance(true);
                 if ($this->_updateRemoteSharedSecret($secret_key) == false) {
+                    $this->getHelper()->log("Request failed, again. Generating exception.", Zend_Log::INFO);
                     Mage::throwException("Problem with Rackspace API or module configuration.");
                 }
             }
 
             $this->getCache()->setSharedSecret($secret_key);
         }
+
+        $this->getHelper()->log("Got secret key ($secret_key)", Zend_Log::INFO);
 
         return $secret_key;
     }
