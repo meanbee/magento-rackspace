@@ -79,13 +79,13 @@
                 </admin>
             </resources>
         </acl>
-        <!--<layout>-->
-            <!--<updates>-->
-                <!--<rackspace>-->
-                    <!--<file>meanbee/rackspace.xml</file>-->
-                <!--</rackspace>-->
-            <!--</updates>-->
-        <!--</layout>-->
+        <layout>
+            <updates>
+                <rackspace>
+                    <file>meanbee/rackspace.xml</file>
+                </rackspace>
+            </updates>
+        </layout>
     </adminhtml>
     <default>
         <rackspace>
