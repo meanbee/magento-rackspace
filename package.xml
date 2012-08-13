@@ -1,18 +1,107 @@
-<?xml version="1.0"?>
-<package>
-    <name>Meanbee_Rackspace</name>
-    <version>0.0.1</version>
-    <stability>stable</stability>
-    <license>Commercial</license>
-    <channel>community</channel>
-    <extends/>
-    <summary>Converts Rackspace Cloud URLs to temporary URLs which expire after a user-defined period.</summary>
-    <description>Converts Rackspace Cloud URLs to temporary URLs which expire after a user-defined period.</description>
-    <notes>First version</notes>
-    <authors><author><name>Meanbee</name><user>meanbee</user><email>hello@meanbee.com</email></author></authors>
-    <date>2012-08-09</date>
-    <time>15:02:37</time>
-    <contents><target name="magelib"><dir name="php-cloudfiles"><file name="AUTHORS" hash="bb4882d079fd03145f96a9fc2f936628"/><file name="COPYING" hash="0088273dfe40e3d3f19e03405b7c30e8"/><file name="Changelog" hash="873ce6e42755c9d7b01a55e6156300f7"/><file name="README" hash="3b8b0aedff4bc032bc9f97cd11e3d19d"/><file name="cloudfiles.php" hash="ce9b638d77f3e925fa7065eb78db5c70"/><file name="cloudfiles_exceptions.php" hash="1e947a0ac9fefbb18b681d9cc88cb48d"/><file name="cloudfiles_http.php" hash="4e02f60b02276cb0d2a1b277262bc1cd"/><dir name="debian"><file name="changelog" hash="18c06ee77da5df9971afdda68c366f35"/><file name="compat" hash="84bc3da1b3e33a18e8d5e1bdd7a18d7a"/><file name="control" hash="52cb5a609bc7b9c7250fb0f3d23b89a5"/><file name="copyright" hash="477dfa54ede28e2f361e7db05941d7a7"/><file name="dirs" hash="a91a42992c66213e33c3942aa34a0996"/><file name="docs" hash="a9fc2c179861f91de76b1f671df02103"/><file name="examples" hash="414fb06ec4a4f617a0080211f4b16ba5"/><file name="install" hash="13172d0ed87b919128afacf0aa29bf1b"/><file name="rules" hash="17b22028d22d9949f68119a160097571"/></dir><dir name="docs"><file name="classtrees_php-cloudfiles-exceptions.html" hash="f10f4eac060369547f3168e8efd73063"/><file name="classtrees_php-cloudfiles-http.html" hash="6bd886a165881604c9239f3fd4e6f28c"/><file name="classtrees_php-cloudfiles.html" hash="0817e8a117c94e9633def002edfd0e92"/><file name="elementindex.html" hash="9ecd9617cf15afca98a2a5f8edc6f6fa"/><file name="elementindex_php-cloudfiles-exceptions.html" hash="f4a8062a0e9481a47ff1ad1378ac9e87"/><file name="elementindex_php-cloudfiles-http.html" hash="19a7ad513e3c3925050866fbbde75d94"/><file name="elementindex_php-cloudfiles.html" hash="d76f6a458b32c2ae7b46eac04ffd0c2f"/><file name="errors.html" hash="60c03d8eaac0ac88ef71a6f219d3346b"/><file name="index.html" hash="fe86294a82e5b7dbd8461fa970245ba7"/><file name="li_php-cloudfiles-exceptions.html" hash="78624bce239293cdd38c3dd9b515648f"/><file name="li_php-cloudfiles-http.html" hash="cef577e0e993a417449c5a9b4ceaddb9"/><file name="li_php-cloudfiles.html" hash="482deefae0775f61a2459ede16ce5138"/><dir name="media"><file name="background.png" hash="5189118af3e84698c51db5f8cac5525a"/><file name="empty.png" hash="4c480a60db1ab64317fe351a24396eb1"/><file name="style.css" hash="903a2b0b536f7a4441388d43e6ffcfe5"/></dir><dir name="php-cloudfiles"><file name="CF_Authentication.html" hash="9e143d2c2eba85a13bc6ede825aa5db7"/><file name="CF_Connection.html" hash="acdf28d37881a1b064a8b5a69a380ad6"/><file name="CF_Container.html" hash="875f9c5284bb1191c23381702481a690"/><file name="CF_Object.html" hash="85471b6a01820de468304a455dc63664"/><file name="_cloudfiles.php.html" hash="dae855f752661456be73c3a43731ae04"/><file name="_test.php.html" hash="255cb5110de0aa6fdad482f57ac277b4"/></dir><dir name="php-cloudfiles-exceptions"><file name="AuthenticationException.html" hash="f8e7b7b5b5d70fbe2f5aed881bb831f2"/><file name="BadContentTypeException.html" hash="e8b597f12eb2064464dc9c00cbee5518"/><file name="CDNNotEnabledException.html" hash="e61d7da43d990aae1db0cbc7475f7c8e"/><file name="ConnectionNotOpenException.html" hash="eff9721072f09d2d73e013da167f2f6e"/><file name="IOException.html" hash="0386ec5ce6c1f83181b3682026ee6a2a"/><file name="InvalidResponseException.html" hash="49430fd3613830e3f9ae84cb5ba2758f"/><file name="InvalidUTF8Exception.html" hash="42c30f52248bec0ed61fbab45cc8396a"/><file name="MisMatchedChecksumException.html" hash="14f340598042b28c8bb3543c5f2057e8"/><file name="NoSuchAccountException.html" hash="69c0e128d678ea6a45bba571c14dcccf"/><file name="NoSuchContainerException.html" hash="7535493a549692a1e24304b66999a112"/><file name="NoSuchObjectException.html" hash="c24a03c46ba4694901a35a50b1b2bf57"/><file name="NonEmptyContainerException.html" hash="d87249bbed11eda696c88b780fc70d26"/><file name="SyntaxException.html" hash="364b8b7ec76b8aafc068b2981d970503"/><file name="_cloudfiles_exceptions.php.html" hash="e744dd2eada6e0505f272786ea6e5655"/></dir><dir name="php-cloudfiles-http"><file name="CF_Http.html" hash="544db7e9b0c3df39654aceeb52cfe8eb"/><file name="_cloudfiles_http.php.html" hash="4a74421e945e878aab7ccecfaa58feb9"/></dir><file name="ric_AUTHORS.html" hash="1a6aa505f77edc6a160509594d05d817"/><file name="ric_COPYING.html" hash="83798f7665a56d087e773720b74b35c0"/><file name="ric_Changelog.html" hash="eb5b0f66d3f68b5889e28109ad089d20"/><file name="ric_README.html" hash="10b59fe96bd3f13c070eadc43df06ed4"/></dir><file name="phpdoc.ini" hash="3b8b0aedff4bc032bc9f97cd11e3d19d"/><file name="phpunit.xml" hash="459cddb83e3c74090d93296921de384d"/><dir name="share"><file name="cacert.pem" hash="34626577b5076f5d12f17543555a9b07"/><file name="magic" hash="9cf123366567918bd69f3e23aa4ebf12"/><file name="magic.mgc" hash="60157501577a52b4970df1a181b3629a"/><file name="magic.mime" hash="6ccc4178731ab01e1cbaafd0afed2ccc"/><file name="magic.mime.mgc" hash="f8e6e14b00e1517eae945cf6bf540596"/></dir><dir name="tests"><file name="Authentication.php" hash="4491561f7dba1d9c52dc8b2fa432105b"/><file name="Comprehensive.php" hash="abecc2a0a642774795bdc33b02b49214"/><file name="FileDetection.php" hash="7e36bd203e900bbc9ef8be79f72fd436"/><file name="General.php" hash="da690a5fc2905078d84d4f9ecb1bd96a"/><file name="UTF8.php" hash="ed211a1bc685edc477e61e612c2ed0dd"/><file name="cloudfiles_ini.php" hash="93ca63347d1b2e314b9c88decfa3c60b"/><file name="common.php" hash="7fb580556a14aeba5cbc85b532a15fdc"/></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Meanbee_Rackspacecloud.xml" hash="fae51ae2e38086a674177a55a3d6c245"/></dir></target><target name="magecommunity"><dir name="Meanbee"><dir name="Rackspacecloud"><dir name="Block"><dir name="Adminhtml"><dir name="Product"><dir name="Edit"><file name="Js.php" hash="e2100690ae961ebf94c0816ffe6cb40b"/></dir></dir></dir></dir><dir name="Helper"><file name="Cache.php" hash="5ce7b7c8bbfbdb6cd7bd7bf81f3d3b8e"/><file name="Config.php" hash="05347449dacf3f4d62a5153a56eedf5a"/><file name="Data.php" hash="f273844b0f8029473b21cab43eacc04d"/></dir><dir name="Model"><file name="Connection.php" hash="83657b85dbdedb6964f64e9a5ed114d4"/><file name="Observer.php" hash="09ec468476937ea4f2bd3e77125efdeb"/></dir><dir name="controllers"><file name="DownloadController.php" hash="855879580738824ba86b8ba6db431512"/></dir><dir name="etc"><file name="config.xml" hash="cabdc82960ddb6a5a7c73f41e8266890"/><file name="system.xml" hash="b0bf2bb846dd7476c7e75321d2c940d5"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="meanbee"><dir name="rackspace"><file name="product_edit_js.phtml" hash="42c7a984d995391263b9fc73e2e5e27c"/></dir></dir></dir><dir name="layout"><dir name="meanbee"><file name="rackspace.xml" hash="c697a05f1b7111f4e0e34ee25d8c202c"/></dir></dir></dir></dir></dir></target></contents>
-    <compatible/>
-    <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php><extension><name>curl</name><min>7.2.14</min><max>7.27.0</max></extension></required></dependencies>
-</package>
+<_>
+   <form_key>rDWlBR848x8eZEOc</form_key>
+   <name>Meanbee_Rackspace</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+   </version_ids>
+   <summary>Protect downloadable product assets hosted on Rackspace Cloud Files</summary>
+   <description>Protect downloadable product assets hosted on Rackspace Cloud Files</description>
+   <license>Commercial License</license>
+   <license_uri/>
+   <version>1.0.0</version>
+   <stability>stable</stability>
+   <notes>Initial release.</notes>
+   <authors>
+      <name>
+         <name>Meanbee</name>
+      </name>
+      <user>
+         <user>meanbee</user>
+      </user>
+      <email>
+         <email>hello@meanbee.com</email>
+      </email>
+   </authors>
+   <depends_php_min>5.2.0</depends_php_min>
+   <depends_php_max>6.0.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+         </name>
+         <channel>
+            <channel/>
+         </channel>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+         <files>
+            <files>             </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+            <name>curl</name>
+         </name>
+         <min>
+            <min/>
+            <min/>
+         </min>
+         <max>
+            <max/>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magecommunity</target>
+         <target>mageetc</target>
+         <target>mageweb</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magecommunity</target>
+      </target>
+      <path>
+         <path>Meanbee/Rackspacecloud</path>
+         <path>modules/Meanbee_Rackspacecloud.xml</path>
+         <path>lib/php-cloudfiles</path>
+         <path>adminhtml/default/default/layout/meanbee/rackspace.xml</path>
+         <path>adminhtml/default/default/template/meanbee/rackspace</path>
+         <path>Meanbee/Rackspacecloud</path>
+      </path>
+      <type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+   <page>1</page>
+   <limit>200</limit>
+   <folder/>
+   <package/>
+</_>
