@@ -1,5 +1,5 @@
 <_>
-   <form_key>rDWlBR848x8eZEOc</form_key>
+   <form_key>MDLBXDTcfhryviMg</form_key>
    <name>Meanbee_Rackspace</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>Protect downloadable product assets hosted on Rackspace Cloud Files</description>
    <license>Commercial License</license>
    <license_uri/>
-   <version>1.0.0</version>
+   <version>1.0.1</version>
    <stability>stable</stability>
-   <notes>Initial release.</notes>
+   <notes>Initial public release.</notes>
    <authors>
       <name>
          <name>Meanbee</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>             </files>
+            <files>                   </files>
          </files>
       </package>
       <extension>
@@ -69,11 +69,11 @@
       </target>
       <path>
          <path>Meanbee/Rackspacecloud</path>
-         <path>modules/Meanbee_Rackspacecloud.xml</path>
+         <path>modules/Meanbee_RackspaceCloudFiles.xml</path>
          <path>lib/php-cloudfiles</path>
-         <path>adminhtml/default/default/layout/meanbee/rackspace.xml</path>
-         <path>adminhtml/default/default/template/meanbee/rackspace</path>
-         <path>Meanbee/Rackspacecloud</path>
+         <path>adminhtml/default/default/layout/meanbee/rackspacecloudfiles.xml</path>
+         <path>adminhtml/default/default/template/meanbee/rackspacecloudfiles</path>
+         <path>Meanbee/RackspaceCloudFiles</path>
       </path>
       <type>
          <type>dir</type>
@@ -100,8 +100,4 @@
          <ignore/>
       </ignore>
    </contents>
-   <page>1</page>
-   <limit>200</limit>
-   <folder/>
-   <package/>
 </_>

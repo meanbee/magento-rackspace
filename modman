@@ -4,3 +4,5 @@ lib/*                                       lib/
 design/adminhtml/layout/meanbee/*           app/design/adminhtml/default/default/layout/meanbee
 design/adminhtml/template/meanbee/*         app/design/adminhtml/default/default/template/meanbee
 
+# Magento Connect package
+package.xml                                 var/connect/Meanbee_RackspaceCloudFiles.xml
