@@ -8,10 +8,10 @@ class Meanbee_RackspaceCloudFiles_DownloadController extends Mage_Downloadable_D
      */
     protected function _processDownload($url, $resourceType) {
         /** @var $config Meanbee_RackspaceCloudFiles_Helper_Config*/
-        $config = Mage::helper('rackspace/config');
+        $config = Mage::helper('meanbee_rackspacecloudfiles/config');
 
         /** @var $helper Meanbee_RackspaceCloudFiles_Helper_Data */
-        $helper = Mage::helper('rackspace');
+        $helper = Mage::helper('meanbee_rackspacecloudfiles');
 
         $helper->log("Hit _processDownload.", Zend_Log::INFO);
 
@@ -21,7 +21,7 @@ class Meanbee_RackspaceCloudFiles_DownloadController extends Mage_Downloadable_D
                 $helper->log("Resource is a URL.", Zend_Log::INFO);
 
                 /** @var $connection Meanbee_RackspaceCloudFiles_Model_Connection */
-                $connection = Mage::getSingleton('rackspace/connection');
+                $connection = Mage::getSingleton('meanbee_rackspacecloudfiles/connection');
 
                 if ($helper->isRelevantUrl($url)) {
                     $helper->log("URL ($url) is relevant.", Zend_Log::INFO);
