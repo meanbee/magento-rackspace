@@ -11,6 +11,26 @@ class Meanbee_RackspaceCloudFiles_Model_Observer {
             );
         }
 
+        if ($config->isConfigured()) {
+            /** @var $connection Meanbee_RackspaceCloudFiles_Model_Connection */
+            $connection = Mage::getModel('meanbee_rackspacecloudfiles/connection');
+
+            /*
+             * Double check the entered credentials against the Rackspace API.  Will throw an exception if there are credentials, so we take the exception message
+             * and make it a little more user friendly.
+             */
+            try {
+                /** @var $auth_instance CF_Authentication */
+                $auth_instance = $connection->getAuthInstance(true);
+
+                Mage::getSingleton('core/session')->addSuccess(
+                    Mage::helper('meanbee_rackspacecloudfiles')->__("We double checked your credentials against the Rackspace API and they appear to be correct")
+                );
+            } catch (Exception $e) {
+                Mage::throwException("It appears that your Rackspace Credentials are incorrect, we checked them and the following error was returned: " . $e->getMessage());
+            }
+        }
+
         if ($config->isLogEnabled()) {
             Mage::getSingleton('core/session')->addNotice(
                 Mage::helper('meanbee_rackspacecloudfiles')->__("Logging is now enabled.")

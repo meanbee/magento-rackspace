@@ -22,7 +22,7 @@
             </meanbee_rackspacecloudfiles>
         </helpers>
         <events>
-            <admin_system_config_changed_section_rackspace>
+            <admin_system_config_changed_section_meanbee_rackspacecloudfiles>
                 <observers>
                     <rackspace_config_change>
                         <type>singleton</type>
@@ -30,7 +30,7 @@
                         <method>observeConfigChange</method>
                     </rackspace_config_change>
                 </observers>
-            </admin_system_config_changed_section_rackspace>
+            </admin_system_config_changed_section_meanbee_rackspacecloudfiles>
             <meanbee_downloadable_product_controller_process_download>
                 <observers>
                     <rackspace_config_change>
