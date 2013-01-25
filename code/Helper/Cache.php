@@ -1,5 +1,5 @@
 <?php
-class Meanbee_Rackspacecloud_Helper_Cache extends Mage_Core_Helper_Abstract {
+class Meanbee_RackspaceCloudFiles_Helper_Cache extends Mage_Core_Helper_Abstract {
     const KEY_AUTH_CONFIG = 'meanbee/rackspacecloudfiles::auth_config';
     const KEY_CDN_CONTAINER_MAP = 'meanbee/rackspacecloudfiles::cdn_container_map';
     const KEY_SHARED_SECRET = 'meanbee/rackspacecloudfiles::shared_secret';

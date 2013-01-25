@@ -1,5 +1,5 @@
 <?php
-class Meanbee_Rackspacecloud_Helper_Config extends Mage_Core_Helper_Abstract {
+class Meanbee_RackspaceCloudFiles_Helper_Config extends Mage_Core_Helper_Abstract {
     const XML_GENERAL_ENABLED        = 'meanbee_rackspacecloudfiles/general/enabled';
 
     const XML_RACKSPACE_USERNAME     = 'meanbee_rackspacecloudfiles/rackspace_options/username';

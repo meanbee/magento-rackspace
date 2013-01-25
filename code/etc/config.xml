@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <Meanbee_Rackspacecloud>
+        <Meanbee_RackspaceCloudFiles>
             <version>0.0.1</version>
-        </Meanbee_Rackspacecloud>
+        </Meanbee_RackspaceCloudFiles>
     </modules>
     <global>
         <models>
             <meanbee_rackspacecloudfiles>
-                <class>Meanbee_Rackspacecloud_Model</class>
+                <class>Meanbee_RackspaceCloudFiles_Model</class>
             </meanbee_rackspacecloudfiles>
         </models>
         <blocks>
             <meanbee_rackspacecloudfiles>
-                <class>Meanbee_Rackspacecloud_Block</class>
+                <class>Meanbee_RackspaceCloudFiles_Block</class>
             </meanbee_rackspacecloudfiles>
         </blocks>
         <helpers>
             <meanbee_rackspacecloudfiles>
-                <class>Meanbee_Rackspacecloud_Helper</class>
+                <class>Meanbee_RackspaceCloudFiles_Helper</class>
             </meanbee_rackspacecloudfiles>
         </helpers>
         <events>
@@ -53,7 +53,7 @@
             <rackspace_download>
                 <use>standard</use>
                 <args>
-                    <module>Meanbee_Rackspacecloud</module>
+                    <module>Meanbee_RackspaceCloudFiles</module>
                     <frontName>meanbee_rackspacecloudfiles</frontName>
                 </args>
             </rackspace_download>
@@ -82,7 +82,7 @@
         <layout>
             <updates>
                 <meanbee_rackspacecloudfiles>
-                    <file>meanbee/rackspace.xml</file>
+                    <file>meanbee/rackspacecloudfiles.xml</file>
                 </meanbee_rackspacecloudfiles>
             </updates>
         </layout>
@@ -103,7 +103,7 @@
     <phpunit>
         <suite>
             <modules>
-                <Meanbee_Rackspacecloud />
+                <Meanbee_RackspaceCloudFiles />
             </modules>
         </suite>
     </phpunit>

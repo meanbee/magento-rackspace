@@ -1,6 +1,6 @@
 <?php
 require_once "php-cloudfiles/cloudfiles.php";
-class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
+class Meanbee_RackspaceCloudFiles_Model_Connection extends Mage_Core_Model_Abstract {
 
     /**
      * Generate the temporary URL for a file.
@@ -90,7 +90,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
     }
 
     /**
-     * @return Meanbee_Rackspacecloud_Helper_Data
+     * @return Meanbee_RackspaceCloudFiles_Helper_Data
      */
     public function getHelper() {
         return Mage::helper('meanbee_rackspacecloudfiles');

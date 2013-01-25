@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <adminhtml_catalog_product_downloadable>
         <reference name="js">
-            <block type="rackspace/adminhtml_product_edit_js" name="mbdd.product.edit.js" template="meanbee/rackspace/product_edit_js.phtml" />
+            <block type="meanbee_rackspacecloudfiles/adminhtml_product_edit_js" name="mbdd.product.edit.js" template="meanbee/rackspacecloudfiles/product_edit_js.phtml" />
         </reference>
     </adminhtml_catalog_product_downloadable>
 </layout>

@@ -1,5 +1,5 @@
 <?php
-class Meanbee_Rackspacecloud_Test_Config_Base extends EcomDev_PHPUnit_Test_Case_Config {
+class Meanbee_RackspaceCloudFiles_Test_Config_Base extends EcomDev_PHPUnit_Test_Case_Config {
     /**
      * @test
      */

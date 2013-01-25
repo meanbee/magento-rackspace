@@ -1,5 +1,5 @@
-code                                        app/code/community/Meanbee/Rackspacecloud
-Meanbee_Rackspacecloud.xml                  app/etc/modules/Meanbee_Rackspacecloud.xml
+code                                        app/code/community/Meanbee/RackspaceCloudFiles
+Meanbee_Rackspacecloud.xml                  app/etc/modules/Meanbee_RackspaceCloudFiles.xml
 lib/*                                       lib/
 design/adminhtml/layout/meanbee/*           app/design/adminhtml/default/default/layout/meanbee
 design/adminhtml/template/meanbee/*         app/design/adminhtml/default/default/template/meanbee

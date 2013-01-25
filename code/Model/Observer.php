@@ -1,8 +1,8 @@
 <?php
-class Meanbee_Rackspacecloud_Model_Observer {
+class Meanbee_RackspaceCloudFiles_Model_Observer {
 
     public function observeConfigChange(Varien_Event_Observer $observer) {
-        /** @var $config Meanbee_Rackspacecloud_Helper_Config */
+        /** @var $config Meanbee_RackspaceCloudFiles_Helper_Config */
         $config = Mage::helper('meanbee_rackspacecloudfiles/config');
 
         if (!$config->isConfigured() && $config->isEnabled()) {
