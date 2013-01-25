@@ -100,4 +100,11 @@
             </developer>
         </rackspace>
     </default>
+    <phpunit>
+        <suite>
+            <modules>
+                <Meanbee_Rackspacecloud />
+            </modules>
+        </suite>
+    </phpunit>
 </config>
