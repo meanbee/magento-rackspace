@@ -3,17 +3,17 @@ class Meanbee_Rackspacecloud_Model_Observer {
 
     public function observeConfigChange(Varien_Event_Observer $observer) {
         /** @var $config Meanbee_Rackspacecloud_Helper_Config */
-        $config = Mage::helper('rackspace/config');
+        $config = Mage::helper('meanbee_rackspacecloudfiles/config');
 
         if (!$config->isConfigured() && $config->isEnabled()) {
             Mage::getSingleton('core/session')->addNotice(
-                Mage::helper('rackspace')->__("The Meanbee Rackspace Cloud Files Downloads module is enabled, but without the username and API key, the module will not work!")
+                Mage::helper('meanbee_rackspacecloudfiles')->__("The Meanbee Rackspace Cloud Files Downloads module is enabled, but without the username and API key, the module will not work!")
             );
         }
 
         if ($config->isLogEnabled()) {
             Mage::getSingleton('core/session')->addNotice(
-                Mage::helper('rackspace')->__("Logging is now enabled.")
+                Mage::helper('meanbee_rackspacecloudfiles')->__("Logging is now enabled.")
             );
 
             $this->_log("Logging is enabled.");
@@ -23,6 +23,6 @@ class Meanbee_Rackspacecloud_Model_Observer {
     }
 
     protected function _log($message, $level = Zend_Log::DEBUG) {
-        Mage::helper('rackspace')->log($message, $level);
+        Mage::helper('meanbee_rackspacecloudfiles')->log($message, $level);
     }
 }

@@ -7,26 +7,26 @@
     </modules>
     <global>
         <models>
-            <rackspace>
+            <meanbee_rackspacecloudfiles>
                 <class>Meanbee_Rackspacecloud_Model</class>
-            </rackspace>
+            </meanbee_rackspacecloudfiles>
         </models>
         <blocks>
-            <rackspace>
+            <meanbee_rackspacecloudfiles>
                 <class>Meanbee_Rackspacecloud_Block</class>
-            </rackspace>
+            </meanbee_rackspacecloudfiles>
         </blocks>
         <helpers>
-            <rackspace>
+            <meanbee_rackspacecloudfiles>
                 <class>Meanbee_Rackspacecloud_Helper</class>
-            </rackspace>
+            </meanbee_rackspacecloudfiles>
         </helpers>
         <events>
             <admin_system_config_changed_section_rackspace>
                 <observers>
                     <rackspace_config_change>
                         <type>singleton</type>
-                        <class>rackspace/observer</class>
+                        <class>meanbee_rackspacecloudfiles/observer</class>
                         <method>observeConfigChange</method>
                     </rackspace_config_change>
                 </observers>
@@ -35,7 +35,7 @@
                 <observers>
                     <rackspace_config_change>
                         <type>singleton</type>
-                        <class>rackspace/observer</class>
+                        <class>meanbee_rackspacecloudfiles/observer</class>
                         <method>observeProcessDownload</method>
                     </rackspace_config_change>
                 </observers>
@@ -44,7 +44,7 @@
         <rewrite>
             <mbdd_download>
                 <from><![CDATA[#^/downloadable/download/#]]></from>
-                <to>/rackspace/download/</to>
+                <to>/meanbee_rackspacecloudfiles/download/</to>
             </mbdd_download>
         </rewrite>
     </global>
@@ -54,7 +54,7 @@
                 <use>standard</use>
                 <args>
                     <module>Meanbee_Rackspacecloud</module>
-                    <frontName>rackspace</frontName>
+                    <frontName>meanbee_rackspacecloudfiles</frontName>
                 </args>
             </rackspace_download>
         </routers>
@@ -68,9 +68,9 @@
                             <children>
                                 <config>
                                     <children>
-                                        <rackspace>
+                                        <meanbee_rackspacecloudfiles>
                                             <title>Meanbee S3 Downloads Settings</title>
-                                        </rackspace>
+                                        </meanbee_rackspacecloudfiles>
                                     </children>
                                 </config>
                             </children>
@@ -81,14 +81,14 @@
         </acl>
         <layout>
             <updates>
-                <rackspace>
+                <meanbee_rackspacecloudfiles>
                     <file>meanbee/rackspace.xml</file>
-                </rackspace>
+                </meanbee_rackspacecloudfiles>
             </updates>
         </layout>
     </adminhtml>
     <default>
-        <rackspace>
+        <meanbee_rackspacecloudfiles>
             <general>
                 <enabled>0</enabled>
             </general>
@@ -98,7 +98,7 @@
             <developer>
                 <log_enabled>0</log_enabled>
             </developer>
-        </rackspace>
+        </meanbee_rackspacecloudfiles>
     </default>
     <phpunit>
         <suite>

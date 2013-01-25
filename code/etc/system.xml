@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <sections>
-        <rackspace translate="label" module="rackspace">
+        <meanbee_rackspacecloudfiles translate="label" module="meanbee_rackspacecloudfiles">
             <label>Meanbee: Rackspace Cloud Files Downloads</label>
             <tab>sales</tab>
             <frontend_type>text</frontend_type>
@@ -10,7 +10,7 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <general translate="label" module="rackspace">
+                <general translate="label" module="meanbee_rackspacecloudfiles">
                     <label>General Options</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
@@ -18,7 +18,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <enabled translate="label" module="rackspace">
+                        <enabled translate="label" module="meanbee_rackspacecloudfiles">
                             <label>Enable?</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -30,7 +30,7 @@
                         </enabled>
                     </fields>
                 </general>
-                <rackspace_options translate="label" module="rackspace">
+                <rackspace_options translate="label" module="meanbee_rackspacecloudfiles">
                     <label>Rackspace Cloud Files Options</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>20</sort_order>
@@ -38,7 +38,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <username translate="label" module="rackspace">
+                        <username translate="label" module="meanbee_rackspacecloudfiles">
                             <label>Username</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
@@ -47,7 +47,7 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[Your <i>username</i> uniquely identifies your account at Rackspace Cloud Files, and is the same username that you use to log in to <a href="https://manage.rackspacecloud.com">manage.rackspacecloud.com</a>.]]></comment>
                         </username>
-                        <api_key translate="label" module="rackspace">
+                        <api_key translate="label" module="meanbee_rackspacecloudfiles">
                             <label>API Key</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>20</sort_order>
@@ -56,7 +56,7 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[The API key associated with your account.  You can find this in your <a href="https://manage.rackspacecloud.com/APIAccess.do">Rackspace Cloud management interface</a>.]]></comment>
                         </api_key>
-                        <request_timeout translate="label" module="rackspace">
+                        <request_timeout translate="label" module="meanbee_rackspacecloudfiles">
                             <label>Request Timeout</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>30</sort_order>
@@ -67,7 +67,7 @@
                         </request_timeout>
                     </fields>
                 </rackspace_options>
-                <developer translate="label" module="rackspace">
+                <developer translate="label" module="meanbee_rackspacecloudfiles">
                     <label>Developer Options</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>30</sort_order>
@@ -75,7 +75,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <log_enabled translate="label" module="rackspace">
+                        <log_enabled translate="label" module="meanbee_rackspacecloudfiles">
                             <label>Enable Logging?</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -88,6 +88,6 @@
                     </fields>
                 </developer>
             </groups>
-        </rackspace>
+        </meanbee_rackspacecloudfiles>
     </sections>
 </config>

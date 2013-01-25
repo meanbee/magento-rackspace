@@ -50,14 +50,14 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * @return Meanbee_Rackspacecloud_Helper_Config
      */
     public function getConfig() {
-        return Mage::helper('rackspace/config');
+        return Mage::helper('meanbee_rackspacecloudfiles/config');
     }
 
     /**
      * @return Meanbee_Rackspacecloud_Helper_Cache
      */
     public function getCache() {
-        return Mage::helper('rackspace/cache');
+        return Mage::helper('meanbee_rackspacecloudfiles/cache');
     }
 
     /**
@@ -93,7 +93,7 @@ class Meanbee_Rackspacecloud_Model_Connection extends Mage_Core_Model_Abstract {
      * @return Meanbee_Rackspacecloud_Helper_Data
      */
     public function getHelper() {
-        return Mage::helper('rackspace');
+        return Mage::helper('meanbee_rackspacecloudfiles');
     }
 
     /**

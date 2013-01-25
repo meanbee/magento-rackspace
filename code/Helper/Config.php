@@ -1,12 +1,12 @@
 <?php
 class Meanbee_Rackspacecloud_Helper_Config extends Mage_Core_Helper_Abstract {
-    const XML_GENERAL_ENABLED        = 'rackspace/general/enabled';
+    const XML_GENERAL_ENABLED        = 'meanbee_rackspacecloudfiles/general/enabled';
 
-    const XML_RACKSPACE_USERNAME     = 'rackspace/rackspace_options/username';
-    const XML_RACKSPACE_API_KEY      = 'rackspace/rackspace_options/api_key';
-    const XML_RACKSPACE_TIMEOUT      = 'rackspace/rackspace_options/request_timeout';
+    const XML_RACKSPACE_USERNAME     = 'meanbee_rackspacecloudfiles/rackspace_options/username';
+    const XML_RACKSPACE_API_KEY      = 'meanbee_rackspacecloudfiles/rackspace_options/api_key';
+    const XML_RACKSPACE_TIMEOUT      = 'meanbee_rackspacecloudfiles/rackspace_options/request_timeout';
 
-    const XML_DEVELOPER_LOG_ENABLED  = 'rackspace/developer/log_enabled';
+    const XML_DEVELOPER_LOG_ENABLED  = 'meanbee_rackspacecloudfiles/developer/log_enabled';
 
     /**
      * Is the complete module enabled
