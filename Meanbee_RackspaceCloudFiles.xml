@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Meanbee_Rackspacecloud>
+        <Meanbee_RackspaceCloudFiles>
             <active>true</active>
             <codePool>community</codePool>
             <depends>
                 <Mage_Downloadable />
             </depends>
-        </Meanbee_Rackspacecloud>
+        </Meanbee_RackspaceCloudFiles>
     </modules>
 </config>

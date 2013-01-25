@@ -69,7 +69,7 @@
                                 <config>
                                     <children>
                                         <meanbee_rackspacecloudfiles>
-                                            <title>Meanbee S3 Downloads Settings</title>
+                                            <title>Meanbee Rackspace Cloud Files Downloads Settings</title>
                                         </meanbee_rackspacecloudfiles>
                                     </children>
                                 </config>
