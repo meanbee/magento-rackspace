@@ -4,6 +4,7 @@ class Meanbee_RackspaceCloudFiles_Helper_Config extends Mage_Core_Helper_Abstrac
 
     const XML_RACKSPACE_USERNAME     = 'meanbee_rackspacecloudfiles/rackspace_options/username';
     const XML_RACKSPACE_API_KEY      = 'meanbee_rackspacecloudfiles/rackspace_options/api_key';
+    const XML_RACKSPACE_REGION       = 'meanbee_rackspacecloudfiles/rackspace_options/region';
     const XML_RACKSPACE_TIMEOUT      = 'meanbee_rackspacecloudfiles/rackspace_options/request_timeout';
 
     const XML_DEVELOPER_LOG_ENABLED  = 'meanbee_rackspacecloudfiles/developer/log_enabled';
@@ -36,6 +37,13 @@ class Meanbee_RackspaceCloudFiles_Helper_Config extends Mage_Core_Helper_Abstrac
      */
     public function getRackspaceApiKey() {
         return $this->_getStoreConfig(self::XML_RACKSPACE_API_KEY);
+    }
+
+    /**
+     * @return string
+     */
+    public function getRackspaceRegion() {
+        return $this->_getStoreConfig(self::XML_RACKSPACE_REGION);
     }
 
     /**

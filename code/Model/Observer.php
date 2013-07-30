@@ -2,6 +2,11 @@
 class Meanbee_RackspaceCloudFiles_Model_Observer {
 
     public function observeConfigChange(Varien_Event_Observer $observer) {
+        /** @var Meanbee_RackspaceCloudFiles_Helper_Cache $cache */
+        $cache = Mage::helper('meanbee_rackspacecloudfiles/cache');
+        $cache->clearAll();
+        $this->_log("All cache entries cleared.", Zend_Log::INFO);
+
         /** @var $config Meanbee_RackspaceCloudFiles_Helper_Config */
         $config = Mage::helper('meanbee_rackspacecloudfiles/config');
 
@@ -20,8 +25,8 @@ class Meanbee_RackspaceCloudFiles_Model_Observer {
              * and make it a little more user friendly.
              */
             try {
-                /** @var $auth_instance CF_Authentication */
-                $auth_instance = $connection->getAuthInstance(true);
+                /** @var OpenCloud\Rackspace $rackspace_connection */
+                $rackspace_connection = $connection->getConnection(true);
 
                 Mage::getSingleton('core/session')->addSuccess(
                     Mage::helper('meanbee_rackspacecloudfiles')->__("We double checked your credentials against the Rackspace API and they appear to be correct")

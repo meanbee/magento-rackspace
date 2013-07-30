@@ -1,15 +1,21 @@
 <?php
 class Meanbee_RackspaceCloudFiles_Helper_Cache extends Mage_Core_Helper_Abstract {
-    const KEY_AUTH_CONFIG = 'meanbee/rackspacecloudfiles::auth_config';
+    const KEY_CREDENTIALS = 'meanbee/rackspacecloudfiles::credentials';
     const KEY_CDN_CONTAINER_MAP = 'meanbee/rackspacecloudfiles::cdn_container_map';
     const KEY_SHARED_SECRET = 'meanbee/rackspacecloudfiles::shared_secret';
 
-    public function setAuthConfig($value) {
-        $this->_saveCache($value, self::KEY_AUTH_CONFIG);
+    public function clearAll() {
+        $this->_removeCache(self::KEY_CREDENTIALS);
+        $this->_removeCache(self::KEY_CDN_CONTAINER_MAP);
+        $this->_removeCache(self::KEY_SHARED_SECRET);
     }
 
-    public function getAuthConfig() {
-        return $this->_loadCache(self::KEY_AUTH_CONFIG);
+    public function setCredentials($credentials) {
+        $this->_saveCache($credentials, self::KEY_CREDENTIALS);
+    }
+
+    public function getCredentials() {
+        return $this->_loadCache(self::KEY_CREDENTIALS);
     }
 
     public function setCdnContainerMap($value) {
