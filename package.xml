@@ -1,5 +1,5 @@
 <_>
-   <form_key>MDLBXDTcfhryviMg</form_key>
+   <form_key>kSBz7e3MXOYbnZyO</form_key>
    <name>Meanbee_RackspaceCloudFiles</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>Protect downloadable product assets hosted on Rackspace Cloud Files</description>
    <license>Commercial License</license>
    <license_uri/>
-   <version>1.0.1</version>
+   <version>2.0.0</version>
    <stability>stable</stability>
-   <notes>Initial public release.</notes>
+   <notes>Switch to php-opencloud SDK for Rackspace API calls.</notes>
    <authors>
       <name>
          <name>Meanbee</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>                   </files>
+            <files>                     </files>
          </files>
       </package>
       <extension>
@@ -70,7 +70,7 @@
       <path>
          <path>Meanbee/Rackspacecloud</path>
          <path>modules/Meanbee_RackspaceCloudFiles.xml</path>
-         <path>lib/php-cloudfiles</path>
+         <path>lib/php-opencloud</path>
          <path>adminhtml/default/default/layout/meanbee/rackspacecloudfiles.xml</path>
          <path>adminhtml/default/default/template/meanbee/rackspacecloudfiles</path>
          <path>Meanbee/RackspaceCloudFiles</path>
